@@ -1,0 +1,46 @@
+name: Publish
+
+# build timings
+on: push
+  # push:
+  #   branches:
+  #     - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: centos:8
+    steps:
+
+    # Install
+    - name: Install
+      run: |
+        dnf upgrade -y
+        curl https://sh.rustup.rs -sSf | sh -s -- -y
+        dnf install -y gcc git
+
+    # Get Files
+    - name: Get files
+      uses: actions/checkout@v1
+
+    # Build
+    - name: Build
+      run: /github/home/.cargo/bin/cargo build --verbose
+
+    # Test
+    - name: Run tests
+      run: /github/home/.cargo/bin/cargo test --verbose
+
+    # Publish
+    - name: Publish
+      env:
+        CARGO: /github/home/.cargo/bin/cargo
+        GITHUB_REF: ${{ secrets.GITHUB_REF }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_ACTOR: GitHub Actions
+        GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+        EMAIL_FOR_AUTO_COMMIT: ${{ secrets.EMAIL_FOR_AUTO_COMMIT }}
+        CRATES_IO_API_ACCESS_KEY: ${{ secrets.CRATES_IO_API_ACCESS_KEY }}
+      run: |
+        export GITHUB_REF=`echo ${GITHUB_REF#refs/heads/}`
+        bash ./.github/scripts/publish.sh

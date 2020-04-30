@@ -5,7 +5,7 @@
 //!
 //! GalM is pattern matching library.
 //!
-//! ![galm](docs/assets/image/galm.png)
+//! ![galm](https://awrznc.github.io/galm/assets/image/galm.png)
 //!
 //! Inspired by Galmoji.
 //!

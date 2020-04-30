@@ -36,7 +36,7 @@ fn main() {
 
 Corresponds to the following characters.
 
-```
+```text
 一右雨円王音下火花貝
 学気九休玉金空月犬見
 五口校左三山子四糸字

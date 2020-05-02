@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eu
 
 # Required Command:
 #   grep, gsed, sort, uniq, awk, head, echo

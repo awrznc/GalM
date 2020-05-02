@@ -45,6 +45,7 @@ jobs:
         GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
         EMAIL_FOR_AUTO_COMMIT: ${{ secrets.EMAIL_FOR_AUTO_COMMIT }}
         CRATES_IO_API_ACCESS_KEY: ${{ secrets.CRATES_IO_API_ACCESS_KEY }}
+        CARGO_TARGET_DIR: /tmp/target
       run: |
         export GITHUB_REF=`echo ${GITHUB_REF#refs/heads/}`
         bash ./.github/scripts/publish.sh

@@ -224,3 +224,5 @@ impl Database {
 pub fn new() -> Database {
     return Database::new();
 }
+
+pub mod search;

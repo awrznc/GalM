@@ -188,7 +188,7 @@ impl Database {
     /// ```
     pub fn new() -> Database {
         return Database {
-            characters: include!("./../target/converted_data.rs"),
+            characters: include!(concat!(env!("CARGO_TARGET_DIR"), "/converted_data.rs")),
             max_distance_size: 100
         };
     }

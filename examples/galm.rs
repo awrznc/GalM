@@ -55,15 +55,12 @@ fn get_levenshtein_distance(str1: &str, str2: &str) -> usize {
 
 // 似ているパラメータ名を表示する
 fn get_similar_param(input_param: &str) -> &str {
-    let max_distance = usize::max_value();
+    use galm::search::Iterator;
     return [
         "-d", "--dictionary",
         "-h", "--help",
         "-v", "--version"
-    ].iter().fold(("", max_distance), |most_similar_param, param| {
-            let distance = get_levenshtein_distance(input_param, param);
-            if distance < most_similar_param.1 { (param, distance) } else { most_similar_param }
-    }).0;
+    ].iter().get_similar_word(input_param);
 }
 
 // main

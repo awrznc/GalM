@@ -5,7 +5,7 @@
 
 GalM is pattern matching library.
 
-![galm](https://awrznc.github.io/galm/assets/image/galm.png)
+![galm](https://awrznc.github.io/GalM/assets/image/galm.png)
 
 Inspired by Galmoji.
 
@@ -49,7 +49,7 @@ Print the most similar string from the strings separated by commas.
 
 ```bash
 # build
-cargo build --example galm --release
+env CARGO_TARGET_DIR=/home/target cargo build --example galm --release
 
 # use galm
 ./target/release/examples/galm "王様レストラン" --dictionary "皇様レストラン,玉様レストラン,大様レストラン"

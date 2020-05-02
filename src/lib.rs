@@ -5,7 +5,7 @@
 //!
 //! GalM is pattern matching library.
 //!
-//! ![galm](https://awrznc.github.io/galm/assets/image/galm.png)
+//! ![galm](https://awrznc.github.io/GalM/assets/image/galm.png)
 //!
 //! Inspired by Galmoji.
 //!
@@ -188,7 +188,7 @@ impl Database {
     /// ```
     pub fn new() -> Database {
         return Database {
-            characters: include!("./../target/converted_data.rs"),
+            characters: include!(concat!(env!("CARGO_TARGET_DIR"), "/converted_data.rs")),
             max_distance_size: 100
         };
     }
@@ -224,3 +224,5 @@ impl Database {
 pub fn new() -> Database {
     return Database::new();
 }
+
+pub mod search;

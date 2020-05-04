@@ -26,12 +26,8 @@ jobs:
 
     # Build
     - name: Build
-      env:
-        CARGO_TARGET_DIR: /tmp/target
       run: /github/home/.cargo/bin/cargo build --verbose
 
     # Test
     - name: Run tests
-      env:
-        CARGO_TARGET_DIR: /tmp/target
       run: /github/home/.cargo/bin/cargo test --verbose

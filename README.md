@@ -49,7 +49,7 @@ Print the most similar string from the strings separated by commas.
 
 ```bash
 # build
-env CARGO_TARGET_DIR=/home/target cargo build --example galm --release
+cargo build --example galm --release
 
 # use galm
 ./target/release/examples/galm "王様レストラン" --dictionary "皇様レストラン,玉様レストラン,大様レストラン"

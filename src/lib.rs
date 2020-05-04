@@ -121,45 +121,62 @@ fn get_low_cost<'character>(
     None
 }
 
-macro_rules! json_parse {
-    ({ $($key:tt : $tt:tt),+ }) => {
-        {
-            let mut characters = ::std::collections::HashMap::new();
-            $(
-                characters.insert($key, array_parse!($tt));
-            )+
-            characters
-        }
-    };
-}
 
-macro_rules! array_parse {
-    ([ $($tt:tt),* ]) => {
+macro_rules! load_json {
+    ($path:tt) => {
         {
-            // use if array is not empty
-            #[allow(unused_mut)]
-            let mut character = Vec::new();
-            $(
-                character.push( hash_parse!($tt) );
-            )*
-            character
-        }
-    };
-}
+            let json_string: Vec<&str> = include_str!($path).split('"').collect();
 
-macro_rules! hash_parse {
-    ({ $($key:tt : $value:expr),+ }) => {
-        {
+            let mut strings: Vec<&str> = Vec::new();
+            for (i, val) in json_string.iter().enumerate() {
+                if (i + 1) % 2 == 0 {
+                    strings.push(val);
+                }
+            }
+
+            let mut characters: Characters = std::collections::HashMap::new();
+            let mut hash_key: &str = "";
             let mut node: &str = "";
             let mut cost: usize = 0;
-            $(
-                match $key {
-                    "node" => node = $value,
-                    "cost" => cost = $value.parse::<usize>().unwrap(),
-                    _ => panic!("Unexpected element."),
+            let node_str: &str = "node";
+            let cost_str: &str = "cost";
+            let mut is_key: bool = true;
+            let mut is_align: (bool, bool) = (false, false);
+            let mut is_node: bool = false;
+            let mut is_cost: bool = false;
+            let mut char_vec: Vec<Character> = Vec::new();
+
+            for string in strings.iter() {
+                if is_key == true {
+                    is_key = false;
+                    hash_key = string;
+                } else if string == &node_str {
+                    is_node = true;
+                } else if string == &cost_str {
+                    is_cost = true;
+                } else if is_node == true {
+                    node = string;
+                    is_align.0 = true;
+                    is_node = false;
+                } else if is_cost == true {
+                    cost = string.parse::<usize>().unwrap();
+                    is_align.1 = true;
+                    is_cost = false;
+                } else {
+                    characters.insert(hash_key, char_vec.clone());
+                    char_vec = Vec::new();
+                    hash_key = string;
+                    continue;
                 }
-            )+
-            Character { name: node, cost: cost }
+                if is_align == (true, true) {
+                    char_vec.push(Character { name: node, cost: cost });
+                    is_align = (false, false);
+                }
+            }
+
+            characters.insert(hash_key, char_vec.clone());
+
+            characters
         }
     };
 }
@@ -188,7 +205,7 @@ impl Database {
     /// ```
     pub fn new() -> Database {
         return Database {
-            characters: include!(concat!(env!("CARGO_TARGET_DIR"), "/converted_data.rs")),
+            characters: load_json!("./../docs/assets/json/characters.json"),
             max_distance_size: 100
         };
     }

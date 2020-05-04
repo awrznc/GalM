@@ -26,12 +26,14 @@ jobs:
 
     # Build
     - name: Build
-      env:
-        CARGO_TARGET_DIR: /tmp/target
       run: /github/home/.cargo/bin/cargo build --verbose
 
     # Test
     - name: Run tests
-      env:
-        CARGO_TARGET_DIR: /tmp/target
       run: /github/home/.cargo/bin/cargo test --verbose
+
+    # Command Test
+    - name: GalM Command tests
+      run: |
+        /github/home/.cargo/bin/cargo build --example galm --release
+        bash ./.github/scripts/galm_spec.sh

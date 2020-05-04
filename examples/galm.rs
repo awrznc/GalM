@@ -69,12 +69,6 @@ fn main() {
     // 翻訳対象を読み込み
     let args: Vec<String> = std::env::args().collect();
 
-    // 引数が指定されていない場合は --help を出力
-    if args.len() <= 1 {
-        println!("{}", HELPSTR);
-        return ();
-    }
-
     // --version もしくは --help が指定されていた場合は、他のオプションに関係なく出力
     // また、両方指定されている場合は、先に指定されていた方を優先して出力
     for arg in args.iter() {
@@ -95,10 +89,16 @@ fn main() {
         }
     }
 
+    // 引数が指定されていない場合は --help を出力
+    if args.len() >= 1 && args.len() < 3 {
+        println!("{}", HELPSTR);
+        return ();
+    }
+
     // 各処理
     match &*args[2] {
         "-d" | "--dictionary" => {
-            if args.len() > 2 {
+            if args.len() > 3 {
                 let max_distance = usize::max_value();
                 let input_param = &*args[1];
                 let result = &*args[3].split(",").fold(("", max_distance), |most_similar_param, param| {

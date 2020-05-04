@@ -6,7 +6,6 @@ authors = ["awrznc"]
 edition = "2018"
 description = "GalM is pattern matching library."
 readme = "README.md"
-build = "./src/build.rs"
 
 
 [dependencies]

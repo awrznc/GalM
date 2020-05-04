@@ -31,6 +31,12 @@ jobs:
     - name: Run tests
       run: /github/home/.cargo/bin/cargo test --verbose
 
+    # Command Test
+    - name: GalM Command tests
+      run: |
+        /github/home/.cargo/bin/cargo build --example galm --release
+        bash ./.github/scripts/galm_spec.sh
+
     # Publish
     - name: Publish
       env:

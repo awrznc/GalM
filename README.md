@@ -52,6 +52,19 @@ Print the most similar string from the strings separated by commas.
 cargo build --example galm --release
 
 # use galm
-./target/release/examples/galm "王様レストラン" --dictionary "皇様レストラン,玉様レストラン,大様レストラン"
-# => 玉様レストラン
+echo -e "皇様\n玉様\n大様" | ./target/release/examples/galm "王様"
+# => 玉様
+```
+
+## Install GalM Command
+
+```bash
+# install galm
+cargo install galm --example galm
+
+# using galm
+echo -e "皇様\n玉様\n大様" | galm "王様"
+# => 玉様
+# => 皇様
+# => 大様
 ```

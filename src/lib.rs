@@ -210,8 +210,8 @@ impl Database {
         };
     }
 
-    /// Get the matching rate.
-    /// Range is 0..`galm::Database.max_distance_size`.
+    /// Get the matching rate fo character.
+    /// Range is 0..[`galm::Database.max_distance_size`](#structfield.max_distance_size).
     /// The more similar the two arguments, the smaller the return value.
     ///
     /// ```rust
@@ -229,6 +229,59 @@ impl Database {
             Some(i) if self.max_distance_size < i => { i as u8 },
             Some(i) => i as u8,
         };
+    }
+
+    /// Get the matching rate of word.
+    /// Range is 0..[`std::usize::MAX`](https://doc.rust-lang.org/std/usize/constant.MAX.html).
+    /// The more similar the two arguments, the smaller the return value.
+    ///
+    /// ```rust
+    /// // Initialize GalM Database instance.
+    /// let galm: galm::Database = galm::Database::new();
+    ///
+    /// let sort_key = "王様";
+    /// let mut vec = ["皇様", "玉様", "大様"];
+    ///
+    /// // Sort Example
+    /// vec.sort_by_key( |candidate| galm.get_word_distance(sort_key, candidate) );
+    ///
+    /// assert_eq!(vec, ["玉様", "皇様", "大様"]);
+    /// ```
+    pub fn get_word_distance(&self, str1: &str, str2: &str) -> usize {
+
+        // initialize table
+        let table_x_size = str1.chars().count() + 1;
+        let table_y_size = str2.chars().count() + 1;
+        let mut table = vec![0; table_x_size * table_y_size];
+        for i in 0..table_x_size {
+            table[i] = i * self.max_distance_size;
+        }
+        for i in 0..table_y_size {
+            table[i*(table_x_size)] = i * self.max_distance_size;
+        }
+
+        // テーブルを埋める
+        // Extend of Levenshtein distance
+        for i in 1..table_y_size {
+            for j in 1..table_x_size {
+
+                // 比較値の用意
+                let up          = table[j+((i-1)*table_x_size)  ] + self.max_distance_size;
+                let left        = table[j+(  i  *table_x_size)-1] + self.max_distance_size;
+                let upper_left  = {
+                    let char1 = str1.chars().nth(j-1).unwrap();
+                    let char2 = str2.chars().nth(i-1).unwrap();
+                    let c = if char1 == char2 { 0 } else { self.get_distance( &char1.to_string(), &char2.to_string() ) as usize };
+                    table[j+((i-1)*table_x_size)-1] + c
+                };
+
+                // 最小値を求める
+                table[j+(i*table_x_size)] = std::cmp::min(std::cmp::min(up, left), upper_left);
+            }
+        }
+
+        // テーブルの右下（配列の最後）の値を返す
+        return table[(table_x_size*table_y_size)-1 as usize];
     }
 }
 

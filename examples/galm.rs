@@ -48,11 +48,6 @@ fn main() {
         }
     }
 
-    
-    if args.len() == 1 {
-        
-    }
-
     match args.len() {
         1 => {
             // 引数が指定されていない場合は --help を出力

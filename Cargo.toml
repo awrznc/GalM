@@ -1,6 +1,6 @@
 [package]
 name = "galm"
-version = "0.0.7"
+version = "0.0.8"
 license = "MIT"
 authors = ["awrznc"]
 edition = "2018"

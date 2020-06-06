@@ -15,7 +15,7 @@ Put the following in your project's Cargo.toml file:
 
 ```toml
 [dependencies]
-galm = "0.0.7"
+galm = "0.0.8"
 ```
 
 And overwrite in your project's main.rs file:

@@ -99,8 +99,12 @@ fn main() {
                 vec.sort_by_key( |candidate| galm.get_word_distance(sort_key, candidate) );
                 
                 // print
+                use std::io::{stdout, Write, BufWriter};
+                let out = stdout();
+                let mut out = BufWriter::new(out.lock());
                 for word in vec {
-                    println!("{}", word);
+                    out.write(word.as_bytes()).unwrap();
+                    out.write(b"\n").unwrap();
                 }
             } else {
                 println!(r"Error:

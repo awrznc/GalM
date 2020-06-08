@@ -22,6 +22,17 @@ fn get_similar_param(input_param: &str) -> &str {
     ].iter().get_similar_word(input_param);
 }
 
+// Vectorの中身を表示する
+fn print_vec(vec: Vec<&str>) {
+    use std::io::{stdout, Write, BufWriter};
+    let out = stdout();
+    let mut out = BufWriter::new(out.lock());
+    for word in vec {
+        out.write(word.as_bytes()).unwrap();
+        out.write(b"\n").unwrap();
+    }
+}
+
 // main
 fn main() {
 
@@ -57,9 +68,9 @@ fn main() {
         2 => {
 
             use std::io::{self, Read};
-            let mut buffer = String::new();
             let stdin = io::stdin();
             let mut handle = stdin.lock();
+            let mut buffer = String::new();
             let _ = handle.read_to_string(&mut buffer);
 
             // initialize galm
@@ -71,9 +82,7 @@ fn main() {
             vec.sort_by_cached_key( |candidate| galm.get_word_distance(sort_key, candidate) );
             
             // print
-            for word in vec {
-                println!("{}", word);
-            }
+            print_vec(vec);
             return ();
         },
         _ => {}
@@ -99,13 +108,7 @@ fn main() {
                 vec.sort_by_cached_key( |candidate| galm.get_word_distance(sort_key, candidate) );
 
                 // print
-                use std::io::{stdout, Write, BufWriter};
-                let out = stdout();
-                let mut out = BufWriter::new(out.lock());
-                for word in vec {
-                    out.write(word.as_bytes()).unwrap();
-                    out.write(b"\n").unwrap();
-                }
+                print_vec(vec);
             } else {
                 println!(r"Error:
     filepath is not specified.");

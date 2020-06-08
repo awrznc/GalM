@@ -68,7 +68,7 @@ fn main() {
             // sort
             let sort_key = &*args[1];
             let mut vec = buffer.lines().collect::<Vec<&str>>();
-            vec.sort_by_key( |candidate| galm.get_word_distance(sort_key, candidate) );
+            vec.sort_by_cached_key( |candidate| galm.get_word_distance(sort_key, candidate) );
             
             // print
             for word in vec {
@@ -96,8 +96,8 @@ fn main() {
                 // sort
                 let sort_key = &*args[1];
                 let mut vec = buffer.lines().collect::<Vec<&str>>();
-                vec.sort_by_key( |candidate| galm.get_word_distance(sort_key, candidate) );
-                
+                vec.sort_by_cached_key( |candidate| galm.get_word_distance(sort_key, candidate) );
+
                 // print
                 use std::io::{stdout, Write, BufWriter};
                 let out = stdout();

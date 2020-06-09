@@ -15,7 +15,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! galm = "0.0.9"
+//! galm = "0.0.10"
 //! ```
 //!
 //! And overwrite in your project's main.rs file:

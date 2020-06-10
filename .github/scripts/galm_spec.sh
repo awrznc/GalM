@@ -6,7 +6,7 @@ GALM_DIR=${SCRIPT_DIR}/../../target/release/examples
 echo 'galm --version'
 result=`${GALM_DIR}/galm --version`
 
-if [[ "${result}" =~ ^(galm version ([0-9]+\.).{3})$ ]]; then
+if [[ "${result}" =~ ^(galm version [0-9]+?\.[0-9]+?\.[0-9]+)$ ]]; then
     echo -e "\e[32m    => '${result}' ok! \e[m"
 else
     echo -e "\e[31m    => '${result}' error. \e[m"

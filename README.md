@@ -3,11 +3,24 @@
 [![Actions Status](https://github.com/awrznc/GalM/workflows/Build/badge.svg)](https://github.com/awrznc/GalM/actions)
 [![Crate](https://img.shields.io/crates/v/galm.svg)](https://crates.io/crates/galm)
 
-GalM is pattern matching library.
+GalM is pattern matching library.<br>
+Inspired by Galmoji.
 
 ![galm](https://awrznc.github.io/GalM/assets/image/galm.png)
 
-Inspired by Galmoji.
+We may not be able to clearly recall proper names.<br>
+Look at the chars below.
+
+```text
+毎　垂
+```
+
+The char on the left has the meaning of "Every" in Japanese.<br>
+On the other hand, the char on the right has the meaning of "Hang down" in Japanese.
+
+In this way, the meanings of letters that look alike can be very different.
+
+GalM helps correct these discrepancies.
 
 ## Quick start
 
@@ -27,7 +40,7 @@ fn main() {
     // Initialize GalM Database instance.
     let galm: galm::Database = galm::new();
 
-    // Get characters similar to the passed in the argument.
+    // Get the matching rate of character.
     let distance: u8 = galm.get_distance("王", "玉");
 
     assert_eq!(distance, 30);
@@ -62,7 +75,7 @@ Corresponds to the following characters.
 
 ## Example
 
-Print the most similar string from the strings separated by commas.
+Print the most similar string from the strings separated by newline.
 
 ```bash
 # build
@@ -75,7 +88,9 @@ echo -e "皇様\n玉様\n大様" | ./target/release/examples/galm "王様"
 # => 皇様
 ```
 
-## Install GalM Command
+## GalM Command
+
+### Install
 
 ```bash
 # install galm
@@ -86,4 +101,11 @@ echo -e "皇様\n玉様\n大様" | galm "王様"
 # => 玉様
 # => 大様
 # => 皇様
+```
+
+### Uninstall
+
+```bash
+# uninstall galm
+cargo uninstall galm
 ```

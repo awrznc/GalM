@@ -35,7 +35,7 @@ jobs:
     - name: GalM Command tests
       run: |
         /github/home/.cargo/bin/cargo build --example galm --release
-        bash ./.github/scripts/galm_spec.sh
+        ./.github/scripts/galm_spec.sh
 
     # Publish
     - name: Publish
@@ -49,4 +49,4 @@ jobs:
         CRATES_IO_API_ACCESS_KEY: ${{ secrets.CRATES_IO_API_ACCESS_KEY }}
       run: |
         export GITHUB_REF=`echo ${GITHUB_REF#refs/heads/}`
-        bash ./.github/scripts/publish.sh
+        ./.github/scripts/publish.sh

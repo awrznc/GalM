@@ -36,4 +36,4 @@ jobs:
     - name: GalM Command tests
       run: |
         /github/home/.cargo/bin/cargo build --example galm --release
-        bash ./.github/scripts/galm_spec.sh
+        ./.github/scripts/galm_spec.sh

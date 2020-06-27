@@ -6,19 +6,20 @@
 GalM is pattern matching library.<br>
 Inspired by Galmoji.
 
-![galm](https://awrznc.github.io/GalM/assets/image/galm.png)
+![galm](https://awrznc.github.io/GalM/assets/image/galm_20200627.png)
 
 We may not be able to clearly recall proper names.<br>
-Look at the chars below.
+Look at the character below.
 
 ```text
-毎　垂
+毎　垂　無
 ```
 
-The char on the left has the meaning of "Every" in Japanese.<br>
-On the other hand, the char on the right has the meaning of "Hang down" in Japanese.
+All the letters have a similar shape.
 
-In this way, the meanings of letters that look alike can be very different.
+However, the character on the left means "Every", the center means "Hang Down" and the character on the right means "Unknown" in Japanese.
+
+In this way, the meanings of letters that look alike can be very different. It's very complicated, don't you think?
 
 GalM helps correct these discrepancies.
 

@@ -8,3 +8,4 @@ description = "GalM is pattern matching library."
 readme = "README.md"
 keywords = ["matching", "cli"]
 repository = "https://github.com/awrznc/GalM"
+exclude = ["docs/assets/image"]

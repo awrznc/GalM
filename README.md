@@ -29,7 +29,7 @@ Put the following in your project's Cargo.toml file:
 
 ```toml
 [dependencies]
-galm = "0.0.15"
+galm = "0.0.16"
 ```
 
 And overwrite in your project's main.rs file:

@@ -6,7 +6,7 @@
 GalM is pattern matching library.<br>
 Inspired by Galmoji.
 
-![galm](https://awrznc.github.io/GalM/assets/image/galm_20200627.png)
+<img src="https://awrznc.github.io/GalM/assets/image/galm_20200627.png" width="600">
 
 We may not be able to clearly recall proper names.<br>
 Look at the character below.

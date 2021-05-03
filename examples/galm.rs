@@ -80,7 +80,7 @@ fn main() {
             let sort_key = &*args[1];
             let mut vec = buffer.lines().collect::<Vec<&str>>();
             vec.sort_by_cached_key( |candidate| galm.get_word_distance(sort_key, candidate) );
-            
+
             // print
             print_vec(vec);
             return ();

@@ -1,9 +1,7 @@
 name: Build
 
 # build timings
-on:
-  push:
-    branches:
+on: push
 
 jobs:
   build:

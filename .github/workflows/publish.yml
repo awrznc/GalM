@@ -9,15 +9,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: centos:8
+    container: debian:10
     steps:
 
     # Install
     - name: Install
       run: |
-        dnf upgrade -y
+        apt-get update -y && apt-get upgrade -y
+        apt-get install -y gcc curl git
         curl https://sh.rustup.rs -sSf | sh -s -- -y
-        dnf install -y gcc git
 
     # Get Files
     - name: Get files

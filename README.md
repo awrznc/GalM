@@ -3,25 +3,10 @@
 [![Actions Status](https://github.com/awrznc/GalM/workflows/Build/badge.svg)](https://github.com/awrznc/GalM/actions)
 [![Crate](https://img.shields.io/crates/v/galm.svg)](https://crates.io/crates/galm)
 
-GalM is pattern matching library.<br>
+GalM is matching library.<br>
 Inspired by Galmoji.
 
-<img src="https://awrznc.github.io/GalM/assets/image/galm_20200627.png" width="600">
-
-We may not be able to clearly recall proper names.<br>
-Look at the character below.
-
-```text
-毎　垂　無
-```
-
-All the letters have a similar shape.
-
-However, the character on the left means "Every", the center means "Hang Down" and the character on the right means "Unknown" in Japanese.
-
-In this way, the meanings of letters that look alike can be very different. It's very complicated, don't you think?
-
-GalM helps correct these discrepancies.
+<img src="https://awrznc.github.io/GalM/assets/image/galm_20210504.png" width="600">
 
 ## Quick start
 
@@ -29,7 +14,7 @@ Put the following in your project's Cargo.toml file:
 
 ```toml
 [dependencies]
-galm = "0.0.17"
+galm = "0.1.0"
 ```
 
 And overwrite in your project's main.rs file:
@@ -48,7 +33,7 @@ fn main() {
 }
 ```
 
-Corresponds to the following characters.
+GalM's matcher supports the following characters.
 
 ```text
 一右雨円王音下火花貝学気九休玉金空月犬見五口校左三山子四糸字耳七車手十出女小上森人水正生青夕石赤千川

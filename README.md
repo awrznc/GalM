@@ -29,7 +29,7 @@ fn main() {
     // Get the matching rate of character.
     let distance: u8 = galm.get_distance("王", "玉");
 
-    assert_eq!(distance, 30);
+    assert_eq!(distance, 22);
 }
 ```
 

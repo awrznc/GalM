@@ -19,7 +19,7 @@ old_version=`grep -E "\"[0-9]+?\.[0-9]+?\.[0-9]+\"" -rho ${SCRIPT_DIR}/../../ --
 build_no=`echo ${old_version} | sed -E "s/^.*(\"[0-9]+?\.[0-9]+?\.)([0-9]+)(\").*$/\2/"`
 major_and_minor_version=`echo ${old_version} | sed -E "s/^.*(\"[0-9]+?\.[0-9]+?\.)([0-9]+)(\").*$/\1/"`
 new_version=`echo ${major_and_minor_version}$(expr ${build_no} + 1)'"'`
-message="Update Build No ${old_version} -> ${new_version}"
+message="Updated Build No ${old_version} -> ${new_version}."
 echo -e "\e[32m finished! \e[m"
 
 # Print Version

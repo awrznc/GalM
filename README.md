@@ -14,7 +14,7 @@ Put the following in your project's Cargo.toml file:
 
 ```toml
 [dependencies]
-galm = "0.1.4"
+galm = "2.0.0"
 ```
 
 And overwrite in your project's main.rs file:
@@ -29,7 +29,7 @@ fn main() {
     // Get the matching rate of character.
     let distance: u8 = galm.get_distance("王", "玉");
 
-    assert_eq!(distance, 30);
+    assert_eq!(distance, 22);
 }
 ```
 

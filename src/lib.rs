@@ -66,7 +66,7 @@ impl Database {
     /// // Get the matching rate of character.
     /// let distance: u8 = galm.get_distance("王", "玉");
     ///
-    /// assert_eq!(distance, 30);
+    /// assert_eq!(distance, 22);
     /// ```
     pub fn get_distance(&self, from: &str, to: &str) -> u8 {
         let index_x = match self.characters.names.iter().position(|&r| r == from) {

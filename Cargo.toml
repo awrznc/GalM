@@ -1,9 +1,9 @@
 [package]
 name = "galm"
-version = "0.1.4"
+version = "2.0.0"
 license = "MIT"
 authors = ["awrznc"]
-edition = "2018"
+edition = "2021"
 description = "GalM is pattern matching library."
 readme = "README.md"
 keywords = ["matching", "sort", "cli"]

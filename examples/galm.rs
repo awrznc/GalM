@@ -47,13 +47,13 @@ fn main() {
             // print version
             "-v" | "--version" => {
                 println!("galm version {}", VERSIONSTR);
-                return ()
+                return;
             },
 
             // print help
             "-h" | "--help" => {
                 println!("{}", HELPSTR);
-                return ()
+                return;
             },
             _ => {}
         }
@@ -63,7 +63,7 @@ fn main() {
         1 => {
             // 引数が指定されていない場合は --help を出力
             println!("{}", HELPSTR);
-            return ();
+            return;
         },
         2 => {
 
@@ -83,7 +83,7 @@ fn main() {
 
             // print
             print_vec(vec);
-            return ();
+            return;
         },
         _ => {}
     }

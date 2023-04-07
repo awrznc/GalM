@@ -28,8 +28,8 @@ fn print_vec(vec: Vec<&str>) {
     let out = stdout();
     let mut out = BufWriter::new(out.lock());
     for word in vec {
-        out.write(word.as_bytes()).unwrap();
-        out.write(b"\n").unwrap();
+        out.write_all(word.as_bytes()).unwrap();
+        out.write_all(b"\n").unwrap();
     }
 }
 

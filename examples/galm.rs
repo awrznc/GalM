@@ -23,7 +23,7 @@ fn get_similar_param(input_param: &str) -> &str {
 }
 
 // Vectorの中身を表示する
-fn print_vec(vec: Vec<&str>) {
+fn print_vec(vec: &Vec<&str>) {
     use std::io::{stdout, Write, BufWriter};
     let out = stdout();
     let mut out = BufWriter::new(out.lock());
@@ -82,7 +82,7 @@ fn main() {
             vec.sort_by_cached_key( |candidate| galm.get_word_distance(sort_key, candidate) );
 
             // print
-            print_vec(vec);
+            print_vec(&vec);
             return;
         },
         _ => {}
@@ -108,7 +108,7 @@ fn main() {
                 vec.sort_by_cached_key( |candidate| galm.get_word_distance(sort_key, candidate) );
 
                 // print
-                print_vec(vec);
+                print_vec(&vec);
             } else {
                 println!(r"Error:
     filepath is not specified.");

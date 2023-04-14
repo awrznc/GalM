@@ -34,6 +34,7 @@ echo -e "\e[32m finished! \e[m"
 echo -n "Git Commit ..."
 git config --global user.name ${GITHUB_ACTOR}
 git config --global user.email ${EMAIL_FOR_AUTO_COMMIT}
+git config --global --add safe.directory /__w/GalM/GalM
 git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 git checkout ${GITHUB_REF}
 git commit -am "${message}"

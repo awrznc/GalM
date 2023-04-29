@@ -29,7 +29,7 @@ impl<'a, 'b> Iterator<'a, 'b> for std::slice::Iter<'a, &str> {
     /// assert_eq!("banana", result);
     /// ```
     fn get_similar_word(self, input_param: &'b str) -> &'a str {
-        let galm = Database::new();
+        let galm = Database::default();
         self.fold(("", usize::max_value()), |most_similar_param, param| {
             let distance = galm.get_word_distance(input_param, param);
             if distance < most_similar_param.1 { (param, distance) } else { most_similar_param }

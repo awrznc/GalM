@@ -78,10 +78,10 @@ impl Database {
             Some(i) => i,
             None => return self.max_distance_size  as u8
         };
-        return match self.characters.costs[index_y + ( index_x * self.characters.names.len() )] {
+        match self.characters.costs[index_y + ( index_x * self.characters.names.len() )] {
             i if self.max_distance_size < i => { self.max_distance_size as u8 },
             i => i as u8,
-        };
+        }
     }
 
     /// Get the matching rate of word.
@@ -134,7 +134,7 @@ impl Database {
         }
 
         // テーブルの右下（配列の最後）の値を返す
-        return table[(table_x_size*table_y_size)-1 as usize];
+        table[(table_x_size*table_y_size) - 1]
     }
 }
 
@@ -145,7 +145,7 @@ impl Database {
 /// let galm: galm::Database = galm::new();
 /// ```
 pub fn new() -> Database {
-    return Database::default();
+    Database::default()
 }
 
 pub mod search;

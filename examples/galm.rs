@@ -1,10 +1,8 @@
-use galm;
-
 // Cargo.toml のバージョン
-const VERSIONSTR: &'static str = env!("CARGO_PKG_VERSION");
+const VERSIONSTR: &str = env!("CARGO_PKG_VERSION");
 
 // --help で表示する文言
-const HELPSTR: &'static str = r"Usage:
+const HELPSTR: &str = r"Usage:
     galm [-f | --file (<file_path> | <string>)]
          [-h | --help] [-v | --version]
 Options:
@@ -15,9 +13,9 @@ Options:
 // 似ているパラメータ名を表示する
 fn get_similar_param(input_param: &str) -> &str {
     use galm::search::Iterator;
-    return ["-f", "--file", "-h", "--help", "-v", "--version"]
+    ["-f", "--file", "-h", "--help", "-v", "--version"]
         .iter()
-        .get_similar_word(input_param);
+        .get_similar_word(input_param)
 }
 
 // Vectorの中身を表示する

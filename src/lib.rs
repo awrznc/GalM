@@ -1,6 +1,5 @@
 #![doc = include_str!("../README.md")]
 
-// #[derive(Copy, Clone, Eq, PartialEq, Debug)]
 #[derive(Debug)]
 pub struct Characters {
     pub names: Vec<&'static str>,
@@ -32,7 +31,7 @@ macro_rules! load_csv {
 
         Characters {
             names: characters,
-            costs: costs,
+            costs,
         }
     }};
 }
@@ -109,8 +108,8 @@ impl Database {
         let table_x_size = str1.chars().count() + 1;
         let table_y_size = str2.chars().count() + 1;
         let mut table = vec![0; table_x_size * table_y_size];
-        for i in 0..table_x_size {
-            table[i] = i * self.max_distance_size;
+        for (i, item) in table.iter_mut().enumerate().take(table_x_size) {
+            *item = i * self.max_distance_size;
         }
         for i in 0..table_y_size {
             table[i * (table_x_size)] = i * self.max_distance_size;

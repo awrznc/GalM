@@ -6,7 +6,7 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: debian:10
+    container: debian:11
     steps:
 
     # Install
@@ -18,7 +18,7 @@ jobs:
 
     # Get Files
     - name: Get files
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     # Build
     - name: Build

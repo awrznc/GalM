@@ -1,10 +1,8 @@
-use galm;
-
 // Cargo.toml のバージョン
-const VERSIONSTR: &'static str = env!("CARGO_PKG_VERSION");
+const VERSIONSTR: &str = env!("CARGO_PKG_VERSION");
 
 // --help で表示する文言
-const HELPSTR: &'static str = r"Usage:
+const HELPSTR: &str = r"Usage:
     galm [-f | --file (<file_path> | <string>)]
          [-h | --help] [-v | --version]
 Options:
@@ -15,16 +13,14 @@ Options:
 // 似ているパラメータ名を表示する
 fn get_similar_param(input_param: &str) -> &str {
     use galm::search::Iterator;
-    return [
-        "-f", "--file",
-        "-h", "--help",
-        "-v", "--version"
-    ].iter().get_similar_word(input_param);
+    ["-f", "--file", "-h", "--help", "-v", "--version"]
+        .iter()
+        .get_similar_word(input_param)
 }
 
 // Vectorの中身を表示する
 fn print_vec(vec: &Vec<&str>) {
-    use std::io::{stdout, Write, BufWriter};
+    use std::io::{BufWriter, Write, stdout};
     let out = stdout();
     let mut out = BufWriter::new(out.lock());
     for word in vec {
@@ -35,7 +31,6 @@ fn print_vec(vec: &Vec<&str>) {
 
 // main
 fn main() {
-
     // 翻訳対象を読み込み
     let args: Vec<String> = std::env::args().collect();
 
@@ -43,18 +38,17 @@ fn main() {
     // また、両方指定されている場合は、先に指定されていた方を優先して出力
     for arg in args.iter() {
         match &*arg.to_string() {
-
             // print version
             "-v" | "--version" => {
                 println!("galm version {}", VERSIONSTR);
                 return;
-            },
+            }
 
             // print help
             "-h" | "--help" => {
                 println!("{}", HELPSTR);
                 return;
-            },
+            }
             _ => {}
         }
     }
@@ -64,9 +58,8 @@ fn main() {
             // 引数が指定されていない場合は --help を出力
             println!("{}", HELPSTR);
             return;
-        },
+        }
         2 => {
-
             use std::io::{self, Read};
             let stdin = io::stdin();
             let mut handle = stdin.lock();
@@ -79,12 +72,12 @@ fn main() {
             // sort
             let sort_key = &*args[1];
             let mut vec = buffer.lines().collect::<Vec<&str>>();
-            vec.sort_by_cached_key( |candidate| galm.get_word_distance(sort_key, candidate) );
+            vec.sort_by_cached_key(|candidate| galm.get_word_distance(sort_key, candidate));
 
             // print
             print_vec(&vec);
             return;
-        },
+        }
         _ => {}
     }
 
@@ -92,7 +85,6 @@ fn main() {
     match &*args[2] {
         "-f" | "--file" => {
             if args.len() > 3 {
-
                 use std::fs::File;
                 use std::io::prelude::*;
                 let mut file = File::open(&*args[3]).unwrap();
@@ -105,22 +97,26 @@ fn main() {
                 // sort
                 let sort_key = &*args[1];
                 let mut vec = buffer.lines().collect::<Vec<&str>>();
-                vec.sort_by_cached_key( |candidate| galm.get_word_distance(sort_key, candidate) );
+                vec.sort_by_cached_key(|candidate| galm.get_word_distance(sort_key, candidate));
 
                 // print
                 print_vec(&vec);
             } else {
-                println!(r"Error:
-    filepath is not specified.");
+                println!(
+                    r"Error:
+    filepath is not specified."
+                );
             }
-        },
+        }
         arg => {
-            println!(r"Error:
+            println!(
+                r"Error:
     not exists option: `{}`
     most similar param name: `{}`
     try 'galm --help' for more information",
                 arg,
-                get_similar_param(arg));
+                get_similar_param(arg)
+            );
         }
     }
 }
